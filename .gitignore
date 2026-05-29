@@ -1,0 +1,49 @@
+# ============================================================
+# Buildroot  NO subir
+# ============================================================
+buildroot-*/
+!buildroot-*/board/raspberrypi4-64/rootfs-overlay/
+!buildroot-*/board/raspberrypi4-64/users.txt
+!buildroot-*/board/raspberrypi4-64/patches/
+
+# Salidas de compilación
+output/
+*.img
+*.img.gz
+*.tar.xz
+
+
+!retroconsole_overlay.tar.gz
+
+# ============================================================
+# ROMs
+# ============================================================
+*.nes
+*.fds
+*.unf
+*.smc
+*.sfc
+*.swc
+*.fig
+*.gba
+*.agb
+*.zip
+home/pi/roms/
+**/rootfs-overlay/home/pi/roms/*
+!**/rootfs-overlay/home/pi/roms/.gitkeep
+
+# ============================================================
+# Archivos del sistema y editores
+# ============================================================
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+
+# Logs y temporales
+*.log
+/tmp/
