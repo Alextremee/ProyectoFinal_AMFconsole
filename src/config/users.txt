@@ -1,0 +1,2 @@
+# Crea grupo "input" para acceso a dispositivos de entrada
+# Formato: usuario uid grupo gid password shell home grupos_extra comentario

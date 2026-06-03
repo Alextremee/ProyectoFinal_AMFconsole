@@ -1,0 +1,34 @@
+# RetroConsole - Pi 4 - HDMI + VGA con 1366x768
+start_file=start4.elf
+fixup_file=fixup4.dat
+kernel=Image
+
+# === HDMI compatible con adaptador VGA ===
+hdmi_force_hotplug=1
+hdmi_drive=2
+disable_overscan=1
+gpu_mem=128
+
+# === Modo personalizado 1366x768 @ 60Hz ===
+# hdmi_cvt=<width> <height> <fps> <aspect> <margins> <interlace> <rb>
+# aspect: 3=16:9
+# margins: 0=sin margenes
+# interlace: 0=progresivo
+# rb: 0=normal (no reduced blanking)
+hdmi_cvt=1366 768 60 3 0 0 0
+hdmi_group=2
+# Modo 87 = modo personalizado (el que definimos arriba con hdmi_cvt)
+hdmi_mode=87
+
+# Reforzar señal HDMI para adaptador VGA
+config_hdmi_boost=7
+
+# === Audio ===
+dtparam=audio=on
+audio_pwm_mode=2
+
+# === Gráficos ===
+dtoverlay=vc4-fkms-v3d
+max_framebuffers=2
+dtoverlay=miniuart-bt
+arm_64bit=1

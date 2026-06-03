@@ -1,0 +1,47 @@
+#!/bin/sh
+# =====================================================================
+#  RetroConsole - S95usbimporter
+#  Arranca el daemon de importacion de ROMs desde USB en segundo plano.
+#  Copiar a: rootfs-overlay/etc/init.d/S95usbimporter   (chmod +x)
+#
+#  Requisitos buildroot: python3, util-linux (mount/umount).
+# =====================================================================
+
+DAEMON=/opt/retroconsole/daemon/usb_importer.py
+PIDFILE=/var/run/usb_importer.pid
+LOGFILE=/var/log/usb_importer.log
+
+start() {
+    printf "RetroConsole: iniciando daemon USB... "
+    if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+        echo "ya en ejecucion"
+        return 0
+    fi
+    # Lanza el daemon, redirige logs, guarda PID
+    python3 "$DAEMON" >> "$LOGFILE" 2>&1 &
+    echo $! > "$PIDFILE"
+    echo "OK (pid $(cat "$PIDFILE"))"
+}
+
+stop() {
+    printf "RetroConsole: deteniendo daemon USB... "
+    if [ -f "$PIDFILE" ]; then
+        kill "$(cat "$PIDFILE")" 2>/dev/null
+        rm -f "$PIDFILE"
+        echo "OK"
+    else
+        echo "no estaba en ejecucion"
+    fi
+}
+
+case "$1" in
+    start) start ;;
+    stop)  stop ;;
+    restart) stop; sleep 1; start ;;
+    *)
+        echo "Uso: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0

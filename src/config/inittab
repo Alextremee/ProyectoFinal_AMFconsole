@@ -1,0 +1,6 @@
+::sysinit:/etc/init.d/rcS
+::shutdown:/etc/init.d/rcK
+::ctrlaltdel:/sbin/reboot
+tty1::respawn:-/bin/sh
+tty2::respawn:-/bin/sh
+ttyAMA0::respawn:/sbin/getty -L ttyAMA0 115200 vt100

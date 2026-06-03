@@ -1,0 +1,8 @@
+vc4
+drm
+i2c-bcm2835
+i2c-dev
+joydev
+hid_playstation
+snd_bcm2835
+uinput

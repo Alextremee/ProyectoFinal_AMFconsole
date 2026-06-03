@@ -1,0 +1,5 @@
+config BR2_PACKAGE_RETROCONSOLE_SPLASH
+	bool "retroconsole-splash"
+	select BR2_PACKAGE_LIBPNG
+	help
+	  Splash screen visor para boot de RetroConsole

@@ -1,0 +1,26 @@
+config BR2_PACKAGE_MEDNAFEN
+	bool "mednafen"
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_USE_MMU
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_7
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_LIBSNDFILE
+	select BR2_PACKAGE_LIBSAMPLERATE
+	select BR2_PACKAGE_FLAC
+	select BR2_PACKAGE_LIBVORBIS
+	select BR2_PACKAGE_LIBOGG
+	select BR2_PACKAGE_ZSTD
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_ALSA_LIB
+	help
+	  Mednafen is a portable, utilizing OpenGL and SDL,
+	  argument(command-line)-driven multi-system emulator.
+	  Supports NES, SNES, Game Boy Advance, and many other systems.
+
+	  https://mednafen.github.io
+
+comment "mednafen needs a toolchain w/ C++, threads, gcc >= 7"
+	depends on BR2_USE_MMU
+	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_TOOLCHAIN_HAS_THREADS \
+		|| !BR2_TOOLCHAIN_GCC_AT_LEAST_7

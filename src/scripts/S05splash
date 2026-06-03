@@ -1,0 +1,11 @@
+#!/bin/sh
+# Muestra splash de RetroConsole 3 segundos
+case "$1" in
+    start|"")
+        # Splash visual y sonido en paralelo, no bloqueante para resto del boot
+        /usr/bin/retroconsole-splash /etc/retroconsole/assets/splash.png 3 > /dev/null 2>&1 &
+        aplay -q /etc/retroconsole/assets/splash.wav > /dev/null 2>&1 &
+        ;;
+    stop) ;;
+esac
+exit 0
